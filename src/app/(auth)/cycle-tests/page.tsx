@@ -1,3 +1,4 @@
+import Link from "next/link";
 import {
   Activity,
   Upload,
@@ -240,7 +241,12 @@ export default function CycleTestsPage() {
                 className="group hover:bg-zinc-700/25 transition-colors cursor-pointer"
               >
                 <td className="px-5 py-3.5">
-                  <span className="font-mono text-xs text-blue-400 font-medium">{t.id}</span>
+                  <Link
+                    href={`/cycle-tests/${t.id}`}
+                    className="font-mono text-xs text-blue-400 font-medium hover:text-blue-300 hover:underline transition-colors"
+                  >
+                    {t.id}
+                  </Link>
                 </td>
                 <td className="px-4 py-3.5">
                   <span className="text-zinc-200 text-xs font-medium">{t.chemistry}</span>
@@ -266,7 +272,9 @@ export default function CycleTestsPage() {
                   <StatusBadge status={t.status} />
                 </td>
                 <td className="px-4 py-3.5">
-                  <ChevronRight className="w-4 h-4 text-zinc-700 group-hover:text-zinc-500 transition-colors ml-auto" />
+                  <Link href={`/cycle-tests/${t.id}`} className="flex justify-end cursor-pointer">
+                    <ChevronRight className="w-4 h-4 text-zinc-700 group-hover:text-zinc-400 transition-colors" />
+                  </Link>
                 </td>
               </tr>
             ))}
