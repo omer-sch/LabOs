@@ -30,14 +30,14 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. The application loads on localhost with no outbound cloud dependencies for data storage or core functionality
   4. Every page renders with the dark-theme Shadcn/ui shell, navigation sidebar, and Framer Motion page transitions matching the premium aesthetic
   5. Data visualization components (Recharts and D3) render correctly within the dark theme without visual artifacts
-**Plans**: TBD
+**Plans**: 5 plans
 
 Plans:
-- [ ] 01-01: Local development environment — Docker Compose for Supabase, environment variables, Next.js 15 project scaffold with TypeScript
-- [ ] 01-02: Database schema — all tables (CycleTest, CycleDatum, Experiment, ProductionProject, SlurryRun, ElectrodeRun, AssemblyRun, User, AIAnalysis) with JSONB metadata columns and FK constraints; Prisma singleton and pooler URL
-- [ ] 01-03: Clerk authentication — sign-in/sign-out flows, session persistence, user sync to DB on first sign-in, requireRole() middleware on all write paths
-- [ ] 01-04: Shared UI shell — dark-theme layout, navigation sidebar (Cycle Tests, Experiments, Manufacturing), Framer Motion page transitions, Shadcn/ui component baseline
-- [ ] 01-05: AI service scaffold — lib/ai.ts abstraction layer with Zod-validated structured output pattern; no live features yet, anti-ad-hoc-call contract established
+- [ ] 01-01-PLAN.md — Local development environment — Docker Compose for Supabase, environment variables, Next.js 15 project scaffold with TypeScript
+- [ ] 01-02-PLAN.md — Database schema — all tables (CycleTest, CycleDatum, Experiment, ProductionProject, SlurryRun, ElectrodeRun, AssemblyRun, User, AIAnalysis) with JSONB metadata columns and FK constraints; Prisma singleton and pooler URL
+- [ ] 01-03-PLAN.md — Clerk authentication — sign-in/sign-out flows, session persistence, user sync to DB on first sign-in, requireRole() middleware on all write paths
+- [ ] 01-04-PLAN.md — Shared UI shell — dark-theme layout, navigation sidebar (Cycle Tests, Experiments, Manufacturing), Framer Motion page transitions, Shadcn/ui component baseline
+- [ ] 01-05-PLAN.md — AI service scaffold — lib/ai.ts abstraction layer with Zod-validated structured output pattern; no live features yet, anti-ad-hoc-call contract established
 
 ### Phase 2: Cycle Testing
 **Goal**: Researchers can import Neware BTS cycle data and immediately analyze it through all four standard cycle charts — including the specialized dQ/dV differential capacity chart — with a full per-cycle data table and multi-test comparison
