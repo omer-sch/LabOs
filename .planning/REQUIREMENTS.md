@@ -119,15 +119,15 @@ Which phases cover which requirements. Updated during roadmap creation.
 | MFGR-03 | Phase 4 | Pending |
 | MFGR-04 | Phase 4 | Pending |
 | MFGR-05 | Phase 4 | Pending |
-| MFGR-06 | Phase 4 | Pending |
-| MFGR-07 | Phase 4 | Pending |
+| MFGR-06 | Phase 5 | Pending |
+| MFGR-07 | Phase 5 | Pending |
 | MFGR-08 | Phase 5 | Pending |
 
 **Coverage:**
-- v1 requirements: 25 total
-- Mapped to phases: 25
+- v1 requirements: 28 total
+- Mapped to phases: 28
 - Unmapped: 0 ✓
 
 ---
 *Requirements defined: 2026-03-01*
-*Last updated: 2026-03-01 after initial definition*
+*Last updated: 2026-03-01 after roadmap creation*
