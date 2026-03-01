@@ -9,11 +9,13 @@ import {
   Factory,
   ChevronRight,
   Zap,
+  LayoutDashboard,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 const navItems = [
+  { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
   { href: "/cycle-tests", label: "Cycle Tests", icon: Activity },
   { href: "/experiments", label: "Experiments", icon: FlaskConical },
   { href: "/manufacturing", label: "Manufacturing", icon: Factory },
