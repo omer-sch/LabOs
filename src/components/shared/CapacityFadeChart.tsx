@@ -67,7 +67,15 @@ function CustomTooltip({
   return null;
 }
 
-export function CapacityFadeChart() {
+interface CapacityFadeChartProps {
+  showCharge?: boolean;
+  showDischarge?: boolean;
+}
+
+export function CapacityFadeChart({
+  showCharge = true,
+  showDischarge = true,
+}: CapacityFadeChartProps) {
   return (
     <ResponsiveContainer width="100%" height={260}>
       <LineChart data={data} margin={{ top: 8, right: 16, bottom: 20, left: 8 }}>
@@ -112,23 +120,27 @@ export function CapacityFadeChart() {
           label={{ value: "80% EOL", fill: "#b45309", fontSize: 10, fontFamily: "monospace", position: "right" }}
         />
 
-        <Line
-          type="monotone"
-          dataKey="discharge"
-          stroke="url(#lineDischarge)"
-          strokeWidth={2}
-          dot={{ fill: "#3B82F6", r: 2, strokeWidth: 0 }}
-          activeDot={{ fill: "#93C5FD", r: 5, strokeWidth: 2, stroke: "#1d4ed8" }}
-        />
-        <Line
-          type="monotone"
-          dataKey="charge"
-          stroke="url(#lineCharge)"
-          strokeWidth={1.5}
-          strokeDasharray="4 2"
-          dot={false}
-          activeDot={{ fill: "#a5b4fc", r: 4, strokeWidth: 2, stroke: "#4338ca" }}
-        />
+        {showDischarge && (
+          <Line
+            type="monotone"
+            dataKey="discharge"
+            stroke="url(#lineDischarge)"
+            strokeWidth={2}
+            dot={{ fill: "#3B82F6", r: 2, strokeWidth: 0 }}
+            activeDot={{ fill: "#93C5FD", r: 5, strokeWidth: 2, stroke: "#1d4ed8" }}
+          />
+        )}
+        {showCharge && (
+          <Line
+            type="monotone"
+            dataKey="charge"
+            stroke="url(#lineCharge)"
+            strokeWidth={1.5}
+            strokeDasharray="4 2"
+            dot={false}
+            activeDot={{ fill: "#a5b4fc", r: 4, strokeWidth: 2, stroke: "#4338ca" }}
+          />
+        )}
 
         <Legend
           verticalAlign="top"

@@ -4,18 +4,15 @@ import {
   Activity,
   Zap,
   TrendingDown,
-  CheckCircle2,
   AlertCircle,
-  Clock,
   Cpu,
   Thermometer,
   Calendar,
+  Clock,
   User,
   Info,
 } from "lucide-react";
-import { CapacityFadeChart } from "@/components/shared/CapacityFadeChart";
-import { CEChart } from "@/components/shared/CEChart";
-import { VoltageProfileChart } from "@/components/shared/VoltageProfileChart";
+import { TestChartsSection } from "@/components/shared/TestChartsSection";
 
 // ─── Test data lookup ────────────────────────────────────────────────────────
 
@@ -203,67 +200,8 @@ export default async function CycleTestDetailPage({
         ))}
       </div>
 
-      {/* Charts row 1: Capacity Fade + CE */}
-      <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
-        <div className="bg-zinc-800/40 border border-zinc-700/50 rounded-xl overflow-hidden">
-          <div className="px-5 py-4 border-b border-zinc-700/40">
-            <h2 className="text-zinc-100 text-sm font-semibold">Capacity Fade</h2>
-            <p className="text-zinc-500 text-[11px] font-mono mt-0.5">
-              Charge &amp; discharge capacity vs cycle · {test.rate} · {test.voltageWindow}
-            </p>
-          </div>
-          <div className="px-4 pt-4 pb-5">
-            <CapacityFadeChart />
-          </div>
-        </div>
-
-        <div className="bg-zinc-800/40 border border-zinc-700/50 rounded-xl overflow-hidden">
-          <div className="px-5 py-4 border-b border-zinc-700/40">
-            <h2 className="text-zinc-100 text-sm font-semibold">Coulombic Efficiency</h2>
-            <p className="text-zinc-500 text-[11px] font-mono mt-0.5">
-              CE (%) per cycle · avg {test.avgCE.toFixed(1)}% after formation
-            </p>
-          </div>
-          <div className="px-4 pt-4 pb-5">
-            <CEChart />
-          </div>
-        </div>
-      </div>
-
-      {/* Chart row 2: Voltage profiles */}
-      <div className="bg-zinc-800/40 border border-zinc-700/50 rounded-xl overflow-hidden">
-        <div className="flex items-start justify-between px-5 py-4 border-b border-zinc-700/40">
-          <div>
-            <h2 className="text-zinc-100 text-sm font-semibold">Discharge Voltage Profiles</h2>
-            <p className="text-zinc-500 text-[11px] font-mono mt-0.5">
-              Voltage vs depth of discharge at 4 cycle snapshots — downward shift = increased polarization · rightward cutoff = capacity fade
-            </p>
-          </div>
-          <div className="flex items-center gap-4 shrink-0">
-            {[
-              { label: "Cycle 1",  color: "bg-violet-400" },
-              { label: "Cycle 10", color: "bg-blue-400" },
-              { label: "Cycle 25", color: "bg-emerald-400" },
-              { label: "Cycle 50", color: "bg-orange-400" },
-            ].map(({ label, color }) => (
-              <div key={label} className="flex items-center gap-1.5">
-                <div className={`w-3 h-0.5 rounded-full ${color}`} />
-                <span className="text-zinc-500 text-[10px] font-mono">{label}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-        <div className="px-4 pt-4 pb-5">
-          <VoltageProfileChart />
-        </div>
-        <div className="flex items-start gap-2 mx-5 mb-5 px-4 py-3 rounded-lg bg-zinc-700/25 border border-zinc-700/40">
-          <Info className="w-3.5 h-3.5 text-zinc-500 shrink-0 mt-0.5" />
-          <p className="text-zinc-500 text-[11px] font-mono leading-relaxed">
-            Curves shifting down and ending earlier with cycle number indicates both increased cell polarization and capacity loss.
-            The voltage plateau region (30–70% DOD) remains relatively stable — characteristic of {test.chemistry} cathode material.
-          </p>
-        </div>
-      </div>
+      {/* Interactive charts — tab selector + compare panel */}
+      <TestChartsSection testId={id} />
 
       {/* Test metadata */}
       <div className="bg-zinc-800/40 border border-zinc-700/50 rounded-xl overflow-hidden">

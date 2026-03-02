@@ -78,7 +78,25 @@ function CustomTooltip({
   return null;
 }
 
-export function VoltageProfileChart() {
+// Maps cycle numbers to data keys
+const CYCLE_TO_KEY: Record<number, keyof typeof COLORS> = {
+  1: "c1",
+  10: "c10",
+  25: "c25",
+  50: "c50",
+};
+
+interface VoltageProfileChartProps {
+  activeCycles?: number[]; // which snapshots to render, default all
+}
+
+export function VoltageProfileChart({
+  activeCycles = [1, 10, 25, 50],
+}: VoltageProfileChartProps) {
+  const activeKeys = activeCycles
+    .map((c) => CYCLE_TO_KEY[c])
+    .filter(Boolean) as (keyof typeof COLORS)[];
+
   return (
     <ResponsiveContainer width="100%" height={280}>
       <LineChart data={profiles} margin={{ top: 8, right: 24, bottom: 20, left: 8 }}>
@@ -116,16 +134,29 @@ export function VoltageProfileChart() {
         />
 
         {(["c1", "c10", "c25", "c50"] as const).map((key) => (
-          <Line
-            key={key}
-            type="monotone"
-            dataKey={key}
-            stroke={COLORS[key]}
-            strokeWidth={2}
-            dot={false}
-            activeDot={{ r: 5, strokeWidth: 2, stroke: COLORS[key] }}
-            connectNulls={false}
-          />
+          activeKeys.includes(key) ? (
+            <Line
+              key={key}
+              type="monotone"
+              dataKey={key}
+              stroke={COLORS[key]}
+              strokeWidth={2}
+              dot={false}
+              activeDot={{ r: 5, strokeWidth: 2, stroke: COLORS[key] }}
+              connectNulls={false}
+            />
+          ) : (
+            // Hidden line keeps the legend entry but renders nothing
+            <Line
+              key={key}
+              type="monotone"
+              dataKey={key}
+              stroke="transparent"
+              strokeWidth={0}
+              dot={false}
+              legendType="none"
+            />
+          )
         ))}
       </LineChart>
     </ResponsiveContainer>
